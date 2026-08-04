@@ -1,0 +1,361 @@
+PRD - Personal Portfolio v2
+Project Overview
+
+Design a modern developer portfolio for Myron D'Cruz, a Computer Science student and backend developer.
+
+The portfolio should showcase projects, achievements, technical skills, and provide an easy way for recruiters or clients to get in touch.
+
+The website should feel like exploring a creative developer's digital workspace rather than browsing a traditional portfolio.
+
+Design Direction
+Theme
+
+My Digital Workspace
+
+The website should resemble a clean, organized workspace with subtle notebook pages, folders, sticky notes, pinned achievement cards, and desk-inspired layouts.
+
+The theme should feel:
+
+professional
+modern
+playful
+memorable
+
+Avoid making it look cartoonish.
+
+The workspace inspiration should enhance usability rather than dominate it.
+
+Design Style
+
+Modern Neubrutalism
+
+Requirements
+
+Thick black borders (3px)
+Hard shadows
+Large rounded corners
+Spacious layout
+Warm off-white background
+Clean typography
+Smooth animations
+Minimal decorative elements
+
+Avoid excessive colors.
+
+Use only one primary accent color.
+
+Color Palette
+
+Background
+
+#F8F5F2
+
+Primary Text
+
+#111111
+
+Accent
+
+#FFD54F
+
+Secondary Accent
+
+#69D2E7
+
+Success
+
+#8BE28B
+
+Typography
+
+Headings
+
+Space Grotesk
+
+Body
+
+Geist
+
+Fallback
+
+Inter
+
+Website Structure
+Navbar
+Hero
+About
+Featured Projects
+Tech Stack
+Achievements
+Contact
+Footer
+
+Do NOT include:
+
+Timeline
+Experience timeline
+Blog
+Testimonials
+Progress bars
+Navbar
+
+Include
+
+Home
+About
+Projects
+Contact
+Resume (CTA button)
+
+Navbar should remain sticky while scrolling.
+
+Hero Section
+Headline
+
+Welcome to My Workspace 👋
+
+Main Heading
+Hi, I'm Myron D'Cruz.
+Subtitle
+
+Backend Developer • AI Builder • Computer Science Student
+
+Description
+
+I enjoy turning ideas into products that solve real problems.
+
+From AI-powered applications to finance dashboards, I love building software that's useful, fast, and thoughtfully designed.
+
+Primary Buttons
+
+View Projects
+
+Download Resume
+
+Secondary Card
+
+A workspace profile card displaying:
+
+📍 Goa, India
+
+💻 Backend Developer
+
+🎓 Computer Science Student
+
+🟢 Open to Opportunities
+
+Current Focus Card
+
+Pinned note style.
+
+Title
+
+Currently Building
+
+Items
+
+• Finance.OS
+
+• Daily LeetCode
+
+• AI Projects
+
+• Freelancing
+
+About Section
+
+Heading
+
+About Me
+
+Description
+
+I'm a Computer Science student passionate about backend development, artificial intelligence, and building meaningful digital products.
+
+I enjoy transforming ideas into polished applications while continuously learning new technologies and improving my problem-solving skills.
+
+Quick Stats
+
+Display as notebook cards
+
+🏆 NPTEL Discipline Star
+
+🎓 9.35 CGPA
+
+💼 Backend Internship Experience
+
+⚡ Multiple Hackathons
+
+Featured Projects
+
+Display projects as workspace folders.
+
+The first project should be larger than the others.
+
+Each card should contain
+
+Project image
+
+Project title
+
+Short description
+
+Technology badges
+
+Buttons
+
+Live Demo
+
+GitHub
+
+Projects to display
+
+Finance.OS
+
+HamsterVision
+
+Athlete AI
+
+Pennie
+
+TestGen AI
+
+Each card should lift slightly on hover.
+
+Tech Stack
+
+Display inside toolbox-inspired cards.
+
+Group technologies into categories.
+
+Frontend
+
+React
+Next.js
+Tailwind CSS
+TypeScript
+
+Backend
+
+Node.js
+Express.js
+Firebase
+
+Database
+
+MongoDB
+Supabase
+
+Artificial Intelligence
+
+Python
+OpenCV
+Gemini API
+
+Tools
+
+Git
+Docker
+Postman
+Figma
+
+Avoid percentage skill bars.
+
+Achievements
+
+Display as pinned cards.
+
+Include
+
+🏆 NPTEL Discipline Star
+
+🥇 Escape The Matrix Winner
+
+💻 Multiple Hackathon Participant
+
+📜 Professional Certifications
+
+Each card should have an icon, title, and short description.
+
+Contact
+
+Title
+
+Leave Me a Note ✉️
+
+Description
+
+Have an idea, an opportunity, or just want to say hello?
+
+I'd love to hear from you.
+
+Display a modern form.
+
+Fields
+
+Name
+
+Email
+
+Message
+
+Primary Button
+
+Send Message
+
+Design the form so it can later be integrated with EmailJS.
+
+Footer
+
+Display
+
+Made with React, Tailwind CSS & ❤️
+
+Links
+
+GitHub
+
+LinkedIn
+
+Email
+
+Microinteractions
+
+Include
+
+Cards lift on hover
+Buttons depress when clicked
+Folder tabs animate subtly
+Sticky notes rotate slightly on hover
+Smooth scrolling
+Fade and slide entrance animations
+
+Avoid flashy effects.
+
+Responsiveness
+
+The design must work perfectly on:
+
+Desktop
+
+Tablet
+
+Mobile
+
+Maintain spacing and hierarchy across all devices.
+
+Accessibility
+
+Ensure
+
+High color contrast
+Keyboard navigation
+Focus states
+Readable typography
+Accessible buttons
+Responsive touch targets
+Overall Goal
+
+The portfolio should immediately communicate that Myron D'Cruz is a developer who builds polished, real-world products. Every design decision should support that impression.
+
+The experience should feel memorable because of its thoughtful "digital workspace" theme, not because of excessive decoration or animations. Focus on clarity, craftsmanship, and usability.

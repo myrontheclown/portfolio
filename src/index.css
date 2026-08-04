@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .font-body {
+    font-family: 'Geist', sans-serif;
+  }
+}
+
+/* Custom Neubrutalism utility styles for Digital Workspace theme */
+:root {
+  --bg-surface: #FBF9F4;
+  --color-primary: #705D00;
+  --color-highlight: #FFDE59;
+  --color-ink: #000000;
+}
+
+/* Custom scrollbar styled in neubrutalism */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0EEE9;
+  border-left: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFDE59;
+  border: 2px solid #000;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5c43d;
+}
+
+/* Base button and card interaction utilities */
+.neo-box {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.neo-box-sm {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.neo-box-lg {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 8px 8px 0px #000000;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.neo-box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #000000;
+}
+
+.neo-btn {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  transition: all 0.12s ease-in-out;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.neo-btn:focus-visible {
+  outline: 3px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Yellow highlight box */
+.highlight-yellow {
+  background-color: #FFDE59;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  padding: 0px 8px;
+  display: inline-block;
+}
+
+/* Custom focus rings */
+*:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}

@@ -17,6 +17,11 @@
   --color-ink: #000000;
 }
 
+/* Smooth scrolling throughout the website */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom scrollbar styled in neubrutalism */
 ::-webkit-scrollbar {
   width: 10px;
@@ -43,21 +48,24 @@
   background-color: #ffffff;
   border: 2px solid #000000;
   box-shadow: 6px 6px 0px #000000;
-  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
 }
 
 .neo-box-sm {
   background-color: #ffffff;
   border: 2px solid #000000;
   box-shadow: 4px 4px 0px #000000;
-  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
 }
 
 .neo-box-lg {
   background-color: #ffffff;
   border: 2px solid #000000;
   box-shadow: 8px 8px 0px #000000;
-  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.18s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
 }
 
 .neo-box:hover {
@@ -70,12 +78,14 @@
   box-shadow: 4px 4px 0px #000000;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
-  transition: all 0.12s ease-in-out;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1), background-color 0.15s ease;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .neo-btn:hover {
@@ -93,6 +103,11 @@
   outline-offset: 2px;
 }
 
+.neo-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
 /* Yellow highlight box */
 .highlight-yellow {
   background-color: #FFDE59;
@@ -106,4 +121,20 @@
 *:focus-visible {
   outline: 2px solid #000000;
   outline-offset: 2px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

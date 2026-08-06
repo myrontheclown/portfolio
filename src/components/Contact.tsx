@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import confetti from 'canvas-confetti';
 import { Mail, FileText, Github, Linkedin, Twitter, Instagram, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { ContactFormData } from '../types/portfolio';
+import { Section } from './ui/Section';
+import { RESUME_PDF_URL } from '../data/portfolioData';
 
-interface ContactProps {
-  onOpenResume: () => void;
-}
-
-export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
+export const Contact: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -17,6 +15,13 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const resetTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) window.clearTimeout(resetTimerRef.current);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
@@ -49,7 +54,6 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_portfolio';
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact';
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key_demo';
-
     try {
       // If valid EmailJS key is present in env, send via SDK
       if (import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
@@ -61,6 +65,10 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
             from_email: formData.email,
             message: formData.message,
             to_name: "Myron Domnic D'Cruz",
+            submitted_on: new Date().toLocaleString("en-IN", {
+            dateStyle: "long",
+            timeStyle: "short",
+            }),
           },
           publicKey
         );
@@ -71,6 +79,10 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
 
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
+
+      // Show "Message Sent!" on the button for ~3 seconds, then reset.
+      if (resetTimerRef.current) window.clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = window.setTimeout(() => setStatus('idle'), 3000);
 
       // Trigger Celebration Confetti
       try {
@@ -91,7 +103,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-[#FFDE59] border-t-2 border-black">
+    <Section id="contact" className="py-16 md:py-24 bg-[#FFDE59] border-t-2 border-black">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Notepad Window Container */}
@@ -200,6 +212,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                     <Loader2 className="w-5 h-5 animate-spin text-[#FFDE59]" />
                     <span>Sending Message...</span>
                   </>
+                ) : status === 'success' ? (
+                  <>
+                    <CheckCircle2 className="w-5 h-5 text-[#FFDE59]" />
+                    <span>✓ Message Sent!</span>
+                  </>
                 ) : (
                   <>
                     <Send className="w-5 h-5 text-[#FFDE59]" />
@@ -227,16 +244,18 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                   <span>Email</span>
                 </a>
 
-                <button
-                  onClick={onOpenResume}
+                <a
+                  href={RESUME_PDF_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="neo-btn bg-white text-black py-2.5 px-3 rounded-lg text-xs font-semibold hover:bg-[#FBF9F4] flex items-center justify-center gap-2"
                 >
                   <FileText className="w-4 h-4 text-black" />
                   <span>Resume</span>
-                </button>
+                </a>
 
                 <a
-                  href="https://github.com/myrondcruz"
+                  href="https://github.com/myrontheclown"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="neo-btn bg-white text-black py-2.5 px-3 rounded-lg text-xs font-semibold hover:bg-[#FBF9F4] flex items-center justify-center gap-2"
@@ -256,7 +275,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                 </a>
 
                 <a
-                  href="https://x.com/myrondcruz"
+                  href="https://x.com/clownthebuilder"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="neo-btn bg-white text-black py-2.5 px-3 rounded-lg text-xs font-semibold hover:bg-[#FBF9F4] flex items-center justify-center gap-2"
@@ -266,7 +285,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
                 </a>
 
                 <a
-                  href="https://instagram.com/myrondcruz"
+                  href="https://instagram.com/clownbuilds"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="neo-btn bg-white text-black py-2.5 px-3 rounded-lg text-xs font-semibold hover:bg-[#FBF9F4] flex items-center justify-center gap-2"
@@ -282,6 +301,6 @@ export const Contact: React.FC<ContactProps> = ({ onOpenResume }) => {
         </div>
 
       </div>
-    </section>
+    </Section>
   );
 };

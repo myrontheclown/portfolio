@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { AnimatePresence } from 'motion/react';
 import { X, ExternalLink, Github, CheckCircle, Cpu, Layers, Terminal } from 'lucide-react';
 import { Project } from '../types/portfolio';
+import { ModalShell } from './ui/ModalShell';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -8,38 +10,19 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    if (project) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [project, onClose]);
-
-  if (!project) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-fade-in"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <div
-        className="relative w-full max-w-3xl bg-[#FBF9F4] border-3 border-black rounded-2xl shadow-[10px_10px_0px_#000] overflow-hidden my-8 max-h-[90vh] flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <AnimatePresence>
+      {project && (
+        <ProjectModalContent key={project.id} project={project} onClose={onClose} />
+      )}
+    </AnimatePresence>
+  );
+};
+
+const ProjectModalContent: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  return (
+    <ModalShell onClose={onClose} labelledBy="modal-title">
+      <div className="w-full max-w-3xl bg-[#FBF9F4] border-3 border-black rounded-2xl shadow-[10px_10px_0px_#000] overflow-hidden max-h-[90vh] flex flex-col">
         {/* Modal Window Header */}
         <div className="bg-[#1B1C19] text-white px-5 py-3.5 flex items-center justify-between border-b-2 border-black shrink-0">
           <div className="flex items-center gap-2">
@@ -53,7 +36,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-white hover:bg-[#FFDE59] hover:text-black transition-colors border border-transparent hover:border-black"
+            className="p-1 rounded-md text-white hover:bg-[#FFDE59] hover:text-black transition-colors border border-transparent hover:border-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFDE59] focus-visible:outline-offset-2"
             aria-label="Close Project Modal"
           >
             <X className="w-5 h-5" />
@@ -62,7 +45,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Modal Scrollable Body */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
-          
+
           {/* Title & Badge */}
           <div>
             <span className="bg-[#FFDE59] border border-black text-black px-3 py-1 rounded-md text-xs font-display font-bold uppercase tracking-wider inline-block mb-2 shadow-[2px_2px_0px_#000]">
@@ -74,10 +57,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           </div>
 
           {/* Banner Image */}
-          <div className="w-full h-56 sm:h-72 border-2 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_#000] relative">
+          <div className="w-full h-56 sm:h-72 border-2 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_#000] relative bg-[#F0EEE9]">
             <img
               src={project.image}
               alt={project.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           </div>
@@ -181,8 +166,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             Close
           </button>
         </div>
-
       </div>
-    </div>
+    </ModalShell>
   );
 };

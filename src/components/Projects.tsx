@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
-import { Folder, ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import React, { useCallback, useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { Folder } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types/portfolio';
 import { ProjectModal } from './ProjectModal';
+import { Section } from './ui/Section';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const reduceMotion = useReducedMotion();
+
+  const openProject = useCallback((project: Project) => {
+    setSelectedProject(project);
+  }, []);
+
+  const closeProject = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
+
+  const handleCardKeyDown = (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    project: Project
+  ) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openProject(project);
+    }
+  };
 
   return (
-    <section id="projects" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
+    <Section id="projects" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Section Header */}
       <div className="mb-12 space-y-3">
         <div className="inline-flex items-center gap-3 bg-[#FFDE59] border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0px_#000]">
@@ -25,16 +45,26 @@ export const Projects: React.FC = () => {
 
       {/* Grid of Projects */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {PROJECTS.map((project) => {
+        {PROJECTS.map((project, index) => {
           const isFeatured = project.featured;
+          const baseRotation = reduceMotion ? 0 : isFeatured ? 0 : index % 2 === 0 ? -0.6 : 0.6;
 
           return (
-            <div
+            <motion.div
               key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className={`neo-box bg-white rounded-2xl relative flex flex-col justify-between overflow-hidden group cursor-pointer ${
+              onClick={() => openProject(project)}
+              onKeyDown={(e) => handleCardKeyDown(e, project)}
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
+              aria-label={`Open project: ${project.title}`}
+              className={`neo-box bg-white rounded-2xl relative flex flex-col justify-between overflow-hidden group cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 transition-[box-shadow] duration-300 ${
                 isFeatured ? 'md:col-span-2' : ''
               }`}
+              initial={{ rotate: baseRotation }}
+              whileHover={reduceMotion ? undefined : { y: -6, rotate: 0 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98, y: 0 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
             >
               {/* Folder Tab Header */}
               <div className="bg-[#1B1C19] text-[#FFDE59] px-4 py-2.5 border-b-2 border-black flex items-center justify-between">
@@ -46,17 +76,20 @@ export const Projects: React.FC = () => {
 
               {/* Card Body */}
               <div className={`p-6 ${isFeatured ? 'grid grid-cols-1 lg:grid-cols-12 gap-6 items-center' : 'space-y-5'}`}>
-                
+
                 {/* Project Image Preview */}
                 <div className={`border-2 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_#000] relative bg-[#F0EEE9] group-hover:shadow-[6px_6px_0px_#000] transition-shadow ${
                   isFeatured ? 'lg:col-span-6 h-64 sm:h-72' : 'h-52'
                 }`}>
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
+                  <div className="w-full h-full group-hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -85,7 +118,7 @@ export const Projects: React.FC = () => {
 
               </div>
 
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -93,9 +126,8 @@ export const Projects: React.FC = () => {
       {/* Project Modal */}
       <ProjectModal
         project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+        onClose={closeProject}
       />
-
-    </section>
+    </Section>
   );
 };

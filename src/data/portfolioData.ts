@@ -1,15 +1,17 @@
-import { Project, MetricCard, SkillCategory, Achievement } from '../types/portfolio';
+import { Project, MetricCard, SkillCategory, Achievement, JourneyItem } from '../types/portfolio';
+
+export const RESUME_PDF_URL = `${import.meta.env.BASE_URL}resume/Myron_D_Cruz_Resume.pdf`;
 
 export const HERO_DATA = {
   name: "Myron D'Cruz",
   fullName: "Myron Domnic D'Cruz",
-  title: "Backend Developer • AI Builder • Computer Science Student",
+  title: "Backend Developer • Data Analyst • AI Builder • Computer Science Student",
   location: "Goa, India",
   role: "Backend Developer",
   education: "Computer Science Student",
   institution: "Agnel Institute of Technology and Design",
   status: "Open to Opportunities",
-  buildingList: ["Daily LeetCode", "AI Agents", "Freelancing"],
+  buildingList: ["LeetCode", "AI Agents", "Freelancing"],
   bio: "I enjoy turning ideas into products that solve real problems. I'm a student at Agnel Institute, currently exploring the intersection of distributed systems and artificial intelligence.",
   aboutExtended: "I'm a Computer Science student passionate about building software that solves real-world problems. I enjoy turning ideas into polished web applications with clean user experiences and scalable backend systems. Currently, I'm focused on strengthening my Data Structures & Algorithms skills, building full-stack web applications, and continuously learning new technologies to become a better software engineer."
 };
@@ -47,15 +49,14 @@ export const METRIC_CARDS: MetricCard[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 'nextgen-ai',
-    title: 'NextGen AI',
+    id: 'testgen-ai',
+    title: 'TestGen AI',
     badge: 'FEATURED / AI',
     description: 'An AI-powered developer platform that automates API testing, generates intelligent test cases, and streamlines backend development workflows using Large Language Models.',
-    fullDescription: 'NextGen AI is a developer productivity platform engineered to dramatically cut down time spent writing boilerplate integration tests and validating REST/GraphQL APIs. Powered by state-of-the-art LLMs, NextGen AI analyzes OpenAPI specifications and codebase endpoints to synthesize end-to-end test suites, detect security vulnerabilities, and generate synthetic payload mocks.',
-    tags: ['TypeScript', 'React', 'Node.js', 'OpenAI API'],
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-    githubUrl: 'https://github.com/myrondcruz/nextgen-ai',
-    liveDemoUrl: 'https://nextgen-ai.dev',
+    fullDescription: 'TestGen AI is a developer productivity platform engineered to dramatically cut down time spent writing boilerplate integration tests and validating REST/GraphQL APIs. Powered by state-of-the-art LLMs, TestGen AI analyzes OpenAPI specifications and codebase endpoints to synthesize end-to-end test suites, detect security vulnerabilities, and generate synthetic payload mocks.',
+    tags: ['TypeScript', 'React', 'Node.js', 'OpenAI API','Express.js','Axios','Swagger Parser'],
+    image: 'projects/testgen-ai/1.jpg',
+    githubUrl: 'https://github.com/myrontheclown/nextgen-ai',
     featured: true,
     architecture: [
       'Express.js API Gateway with async event-driven queuing',
@@ -82,16 +83,16 @@ export const PROJECTS: Project[] = [
     title: 'PlayMind AI',
     badge: 'AI / COMPUTER VISION',
     description: 'An AI-powered sports performance and match intelligence platform that analyzes match footage using computer vision.',
-    fullDescription: 'PlayMind AI leverages state-of-the-art computer vision models to track players, ball trajectories, and tactical patterns in real-time sports footage. Built for coaches and athletes, it provides heatmaps, player velocity stats, and automated event tags to deliver actionable insights directly from raw video uploads.',
-    tags: ['Next.js', 'TensorFlow.js', 'Python', 'OpenCV'],
-    image: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=1200&q=80',
-    githubUrl: 'https://github.com/myrondcruz/playmind-ai',
-    liveDemoUrl: 'https://playmind-ai.dev',
+    fullDescription: 'PlayMind AI is an AI-powered sports intelligence platform that helps coaches, scouts, and athletes evaluate player performance beyond traditional match statistics. By analyzing gameplay situations and decision-making patterns, it generates performance insights, decision quality scores, future potential predictions, and personalized improvement recommendations to support smarter coaching and talent discovery.',
+    tags: ['Next.js', 'React', 'Node.js', 'Google Gemini','Firebase'],
+    image: 'projects/playmind-ai/1.png',
+    githubUrl: 'https://github.com/myrontheclown/playmind-ai',
     architecture: [
-      'TensorFlow.js & YOLOv8 model pipeline for multi-object tracking',
-      'Next.js 14 App Router client with WebGPU-accelerated video rendering',
-      'Python FastAPI microservice for heavy video decoding and feature extraction',
-      'PostgreSQL + Supabase vector database for matching historic tactic profiles'
+      'Frontend: Next.js with React and TypeScript',
+      'Backend: Node.js',
+      'Database & Authentication: Firebase',
+      'AI: Google Gemini for coaching insights and decision analysis',
+      'Analytics: Custom AI logic for player evaluation, performance prediction, and talent discovery'
     ],
     keyFeatures: [
       'Real-time player tracking and team formation detection',
@@ -100,11 +101,10 @@ export const PROJECTS: Project[] = [
       'Interactive video player with bounding box toggles and telemetry overlays'
     ],
     technicalHighlights: [
-      'Integrated YOLOv8 computer vision models via OpenCV and WebGPU for multi-object tracking',
-      'Designed a Python FastAPI microservice dedicated to video frame extraction and tensor decoding',
-      'Implemented vector similarity search in Supabase PostgreSQL to match live movement patterns to tactic databases',
-      'Developed HTML5 Canvas overlay rendering routines synchronized with video playback timestamps',
-      'Built spatial coordinate transformation utilities to map 2D video coordinates to 3D field coordinate grids'
+      'Developed an AI-powered sports analytics platform focused on decision intelligence and player evaluation.',
+      'Designed modules to generate performance scores, decision quality analysis, and personalized athlete recommendations.',
+      'Integrated Google Gemini to deliver contextual coaching insights and explain player decisions.',
+      'Built a responsive dashboard for visualizing athlete performance and predictive analytics.'
     ]
   },
   {
@@ -112,11 +112,10 @@ export const PROJECTS: Project[] = [
     title: 'Athlete AI',
     badge: 'AI',
     description: 'An AI-powered fitness companion that generates personalized workout plans and performance recommendations.',
-    fullDescription: 'Athlete AI is a personalized training engine designed to adapt workouts based on real-time biometric feedback, fatigue scores, and historical progress. It continuously recalibrates rest days, target rep ranges, and nutritional macro targets using AI heuristics.',
-    tags: ['Next.js', 'FastAPI', 'Python', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80',
-    githubUrl: 'https://github.com/myrondcruz/athlete-ai',
-    liveDemoUrl: 'https://athlete-ai.dev',
+    fullDescription: 'Athlete AI is an AI-powered sports injury assessment and recovery platform designed to help athletes monitor injuries, receive personalized rehabilitation guidance, and make informed return-to-play decisions. By combining intelligent triage, recovery planning, computer vision concepts, and AI-assisted coaching, the platform supports athletes throughout their recovery journey.',
+    tags: ['Next.js', 'Framer Motion', 'Google Gemini API', 'Tailwind CSS'],
+    image: 'projects/athlete-ai/1.png',
+    githubUrl: 'https://github.com/myrontheclown/athlete-ai',
     architecture: [
       'FastAPI server handling fitness optimization algorithms and ML predictions',
       'Next.js frontend with responsive offline-first offline sync capabilities',
@@ -130,14 +129,14 @@ export const PROJECTS: Project[] = [
       'Interactive meal planner and macro-nutrient breakdown'
     ],
     technicalHighlights: [
-      'Constructed algorithmic rep/volume adjustment pipelines in Python FastAPI based on daily strain scores',
-      'Implemented stateless JWT token authentication with secure HTTP-only cookie handlers',
-      'Designed relational PostgreSQL database schemas with indexed queries for fast workout log retrievals',
-      'Built an offline-first state synchronization store using React Query and IndexedDB persistence',
-      'Created automated macro-nutrient balancing formulas for personalized meal plan generation'
+      'Developed an AI-assisted injury triage system with an interactive body map and adaptive injury assessment workflow.',
+      'Built personalized recovery plans that dynamically generate rehabilitation phases, daily objectives, and progress tracking.',
+      'Implemented AI-powered injury analysis, reinjury risk assessment, and contextual recovery recommendations.',
+      'Created bilingual support (English and Hindi) with seamless language switching across the application.',
+      'Integrated PDF report generation, athlete onboarding, authentication, and role-based access into a unified platform.'
     ]
   },
-  {
+  /* {
     id: 'aligncorp',
     title: 'AlignCorp',
     badge: 'HACKATHON',
@@ -166,17 +165,17 @@ export const PROJECTS: Project[] = [
       'Developed serverless Firebase Cloud Functions for transactional email dispatch on task updates',
       'Implemented optimistic UI rendering patterns for instant drag-and-drop feedback on task state changes'
     ]
-  },
+  }, */
   {
     id: 'finance-os',
-    title: 'Finance.OS',
+    title: 'Common Cents',
     badge: 'FULL STACK',
     description: 'A modern AI-powered personal finance dashboard that helps users track expenses and manage accounts.',
     fullDescription: 'Finance.OS provides a unified financial command center for tracking subscriptions, investment portfolios, cashflow forecasts, and monthly budgets. It features AI categorizations for raw bank statement CSV imports and automated budget alerts.',
     tags: ['React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-    githubUrl: 'https://github.com/myrondcruz/finance-os',
-    liveDemoUrl: 'https://finance-os.dev',
+    image: '/projects/common-cents/1.png',
+    githubUrl: 'https://github.com/myrontheclown/common-cents',
+    liveDemoUrl: 'https://common-cents-cxqh.onrender.com/',
     architecture: [
       'React single page app with Recharts interactive data visualization',
       'Supabase Postgres relational database with Row Level Security (RLS)',
@@ -248,6 +247,50 @@ export const ACHIEVEMENTS: Achievement[] = [
     description: 'Built AI-powered applications, finance dashboards, and full-stack web projects using modern technologies with a focus on scalable, user-centric solutions.',
     icon: 'code'
   }
+];
+
+export const JOURNEY: JourneyItem[] = [
+  {
+    id: 'backend-intern',
+    filename: 'backend-intern.md',
+    icon: 'terminal',
+    role: 'Backend Developer Intern',
+    company: 'Spark+ Technologies',
+    duration: 'Mar 2026 – Present',
+    employmentType: 'Internship',
+    techStack: ['Node.js', 'Express.js', 'NestJS', 'TypeScript', 'JavaScript'],
+  },
+  {
+    id: 'data-analyst',
+    filename: 'data-analyst.md',
+    icon: 'analytics',
+    role: 'Data Analyst Intern',
+    company: 'Remote Software Solutions Pvt Ltd',
+    duration: 'Aug 2026 – Present',
+    employmentType: 'Internship',
+    techStack: ['Python', 'SQL', 'Pandas'],
+  },
+  {
+    id: 'web-dev',
+    filename: 'web-dev.md',
+    icon: 'web',
+    role: 'Web Developer Intern',
+    company: 'Lenovo',
+    duration: 'Jun 2025 – Jul 2025',
+    employmentType: 'Internship',
+    techStack: ['HTML', 'CSS', 'JavaScript'],
+  },
+  {
+    id: 'education',
+    filename: 'education.md',
+    icon: 'graduation',
+    role: 'Bachelor of Engineering',
+    program: 'Computer Science',
+    company: 'Agnel Institute of Engineering and Management',
+    duration: '2023 – 2027',
+    employmentType: 'Education',
+    footnote: 'CGPA: 9.23',
+  },
 ];
 
 export const SOCIAL_LINKS = [

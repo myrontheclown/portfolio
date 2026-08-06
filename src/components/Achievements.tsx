@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Calendar, Users, Code } from 'lucide-react';
 import { ACHIEVEMENTS } from '../data/portfolioData';
+import { Section } from './ui/Section';
 
 export const Achievements: React.FC = () => {
   const getIcon = (iconType: string) => {
@@ -19,7 +20,7 @@ export const Achievements: React.FC = () => {
   };
 
   return (
-    <section id="achievements" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Section id="achievements" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       {/* Section Header */}
       <div className="text-center mb-14">
@@ -61,6 +62,6 @@ export const Achievements: React.FC = () => {
         ))}
       </div>
 
-    </section>
+    </Section>
   );
 };

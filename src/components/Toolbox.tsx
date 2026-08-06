@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wrench } from 'lucide-react';
+import { Section } from './ui/Section';
 
 interface ToolItem {
   name: string;
@@ -29,7 +30,7 @@ const TOOLS: ToolItem[] = [
 
 export const Toolbox: React.FC = () => {
   return (
-    <section id="toolbox" className="py-16 md:py-24 bg-[#1B1C19] text-white border-y-2 border-black relative overflow-hidden">
+    <Section id="toolbox" className="py-16 md:py-24 bg-[#1B1C19] text-white border-y-2 border-black relative overflow-hidden">
       {/* Background Corkboard Dot Pattern */}
       <div 
         className="absolute inset-0 opacity-20 pointer-events-none"
@@ -59,11 +60,11 @@ export const Toolbox: React.FC = () => {
           {TOOLS.map((tool, idx) => (
             <div
               key={idx}
-              className={`relative group border-2 border-black rounded-xl p-4 sm:p-5 ${tool.colorBg} text-black font-display font-bold text-base sm:text-lg shadow-[5px_5px_0px_#000] flex items-center justify-center text-center select-none cursor-pointer transition-all duration-200 ${tool.rotationClass} hover:rotate-0 hover:-translate-y-1.5 hover:shadow-[8px_8px_0px_#000] hover:z-20`}
+              className={`relative group border-2 border-black rounded-xl p-4 sm:p-5 ${tool.colorBg} text-black font-display font-bold text-base sm:text-lg shadow-[5px_5px_0px_#000] flex items-center justify-center text-center select-none cursor-pointer transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.2,0,0,1)] will-change-transform ${tool.rotationClass} hover:rotate-0 hover:-translate-y-2 hover:shadow-[8px_8px_0px_#000] hover:z-20`}
             >
               {/* Pushpin motif */}
               <div 
-                className={`absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full ${tool.pinColor || 'bg-red-500'} border border-black shadow-[1px_1px_0px_#000] group-hover:scale-110 transition-transform`} 
+                className={`absolute -top-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full ${tool.pinColor || 'bg-red-500'} border border-black shadow-[1px_1px_0px_#000] group-hover:scale-110 transition-transform duration-300`} 
                 aria-hidden="true"
               />
 
@@ -73,9 +74,9 @@ export const Toolbox: React.FC = () => {
             </div>
           ))}
         </div>
-
       </div>
-    </section>
+
+    </Section>
   );
 };
 

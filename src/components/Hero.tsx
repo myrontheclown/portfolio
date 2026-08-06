@@ -1,12 +1,9 @@
 import React from 'react';
 import { ArrowRight, Mail, MapPin, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
 import { HERO_DATA } from '../data/portfolioData';
+import { Section } from './ui/Section';
 
-interface HeroProps {
-  onOpenResume: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
+export const Hero: React.FC = () => {
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.querySelector(id);
@@ -22,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   };
 
   return (
-    <section id="home" className="py-12 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <Section id="home" className="py-12 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
         {/* Left Column: Intro & Call to Action */}
@@ -100,15 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
             {/* Image Box */}
             <div className="w-full aspect-[4/3] bg-[#EAE8E3] border-2 border-black rounded-xl overflow-hidden relative group">
               <img
-                src="https://i.ibb.co/b5dQ8SF1/profile.jpg"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (target.src.includes('profile.jpg')) {
-                    target.src = "https://i.ibb.co/b5dQ8SF1";
-                  } else if (target.src.includes('i.ibb.co')) {
-                    target.src = "https://ibb.co/b5dQ8SF1";
-                  }
-                }}
+                src="images/profilePic.jpg"
                 alt="Myron Domnic D'Cruz - Backend Developer"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 loading="eager"
@@ -152,6 +141,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         </div>
 
       </div>
-    </section>
+    </Section>
   );
 };

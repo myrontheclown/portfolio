@@ -36,6 +36,19 @@ export interface Achievement {
   date?: string;
 }
 
+export interface JourneyItem {
+  id: string;
+  filename: string;
+  icon: 'terminal' | 'analytics' | 'web' | 'graduation';
+  role: string;
+  company: string;
+  duration: string;
+  employmentType: string;
+  program?: string;
+  techStack?: string[];
+  footnote?: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
